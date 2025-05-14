@@ -21,18 +21,20 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang='en' suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
           <WalletProvider>
-            <div className="flex h-screen">
+            <div className='relative flex min-h-screen bg-background'>
               <Sidebar />
-              <main className="flex-1 overflow-auto p-6">{children}</main>
+              <main className='flex-1 overflow-auto p-4 md:p-6 transition-all duration-200'>
+                <div className='mx-auto max-w-7xl'>{children}</div>
+              </main>
             </div>
           </WalletProvider>
           <Toaster />
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }

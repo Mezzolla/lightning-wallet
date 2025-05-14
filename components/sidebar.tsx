@@ -88,7 +88,7 @@ export function Sidebar() {
       <Button
         variant='outline'
         size='icon'
-        className='fixed left-4 top-4 z-40 md:hidden'
+        className='fixed left-4 top-4 z-40 md:hidden shadow-sm hover:shadow-md transition-shadow'
         onClick={() => setIsOpen(!isOpen)}
       >
         {isOpen ? <X className='h-4 w-4' /> : <Menu className='h-4 w-4' />}
@@ -97,7 +97,7 @@ export function Sidebar() {
       {/* Overlay for mobile */}
       {isOpen && (
         <div
-          className='fixed inset-0 z-20 bg-background/80 backdrop-blur-sm md:hidden'
+          className='fixed inset-0 z-20 bg-background/80 backdrop-blur-sm md:hidden animate-in fade-in duration-200'
           onClick={() => setIsOpen(false)}
         />
       )}
@@ -106,29 +106,45 @@ export function Sidebar() {
       <div
         ref={sidebarRef}
         className={cn(
-          'fixed inset-y-0 left-0 z-30 flex flex-col border-r bg-background transition-all duration-200 ease-in-out',
+          'fixed inset-y-0 left-0 z-50 flex flex-col border-r bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-all duration-200 ease-in-out shadow-lg',
           isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0',
           isCollapsed ? 'w-16' : 'w-64'
         )}
       >
-        <div className='flex h-14 items-center justify-between border-b px-4'>
-          <Link href='/home' className={cn('flex items-center gap-2 font-bold', isCollapsed && 'justify-center')}>
+        <div className='flex h-14 items-center justify-between border-b px-4 bg-background/95'>
+          <Link
+            href='/home'
+            className={cn(
+              'flex items-center gap-2 font-bold hover:opacity-80 transition-opacity',
+              isCollapsed && 'justify-center'
+            )}
+          >
             <Zap className='h-5 w-5' />
             {!isCollapsed && <span>Lightning Wallet</span>}
           </Link>
           <div className='flex items-center gap-2'>
             {/* Collapse Toggle Button (Desktop only) */}
-            <Button variant='ghost' size='icon' className='hidden md:flex' onClick={() => setIsCollapsed(!isCollapsed)}>
-              <ChevronLeft className={cn('h-4 w-4 transition-transform', isCollapsed && 'rotate-180')} />
+            <Button
+              variant='ghost'
+              size='icon'
+              className='hidden md:flex hover:bg-accent/50 transition-colors'
+              onClick={() => setIsCollapsed(!isCollapsed)}
+            >
+              <ChevronLeft className={cn('h-4 w-4 transition-transform duration-200', isCollapsed && 'rotate-180')} />
             </Button>
             {/* Close Button (Mobile only) */}
-            <Button variant='ghost' size='icon' className='md:hidden' onClick={() => setIsOpen(false)}>
+            <Button
+              variant='ghost'
+              size='icon'
+              className='md:hidden hover:bg-accent/50 transition-colors'
+              onClick={() => setIsOpen(false)}
+            >
               <X className='h-4 w-4' />
             </Button>
           </div>
         </div>
 
-        <div className={cn('px-4 py-2', isCollapsed && 'px-2')}>
+        <div className={cn('px-4 py-2 bg-background/95', isCollapsed && 'px-2')}>
           <NetworkSelector isCollapsed={isCollapsed} />
         </div>
 
@@ -140,12 +156,18 @@ export function Sidebar() {
                 href={route.path}
                 onClick={() => setIsOpen(false)}
                 className={cn(
-                  'group flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground',
-                  pathname === route.path ? 'bg-accent text-accent-foreground' : 'transparent',
+                  'group flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors duration-200',
+                  'hover:bg-accent/50 hover:text-accent-foreground',
+                  pathname === route.path ? 'bg-accent text-accent-foreground' : 'text-muted-foreground',
                   isCollapsed && 'justify-center px-2'
                 )}
               >
-                <route.icon className={cn('h-4 w-4', !isCollapsed && 'mr-2')} />
+                <route.icon
+                  className={cn(
+                    'h-4 w-4 transition-transform duration-200 group-hover:scale-110',
+                    !isCollapsed && 'mr-2'
+                  )}
+                />
                 {!isCollapsed && <span>{route.name}</span>}
               </Link>
             ))}

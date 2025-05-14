@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { useWallet } from "@/app/wallet-provider"
+import {useWallet} from '@/app/(authenticated)/wallet-provider';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"

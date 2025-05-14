@@ -1,6 +1,6 @@
 "use client"
 
-import { useWallet } from "@/app/wallet-provider"
+import {useWallet} from '@/app/(authenticated)/wallet-provider';
 import { Button } from "@/components/ui/button"
 import { PlusCircle, RefreshCw } from "lucide-react"
 

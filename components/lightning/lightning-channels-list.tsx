@@ -1,6 +1,6 @@
 "use client"
 
-import { useWallet } from "@/app/wallet-provider"
+import {useWallet} from '@/app/(authenticated)/wallet-provider';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"

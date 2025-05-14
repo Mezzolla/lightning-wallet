@@ -3,7 +3,7 @@ import {Zap, Shield, Wallet, Globe, Lock} from 'lucide-react';
 import {Button} from '@/components/ui/button';
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from '@/components/ui/card';
 
-export default function Home() {
+export default function VetrinaPage() {
   return (
     <div className='flex min-h-screen flex-col'>
       <header className='sticky top-0 z-30 flex h-16 items-center justify-between border-b bg-background/95 px-4 backdrop-blur md:px-6'>
